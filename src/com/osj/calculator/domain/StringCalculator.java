@@ -1,5 +1,7 @@
 package com.osj.calculator.domain;
 
+import java.util.Arrays;
+
 public final class StringCalculator {
   private final InputExistCondition inputExistCondition = new InputExistCondition();
 
@@ -11,21 +13,21 @@ public final class StringCalculator {
     return sum(toInts(input.split("[,:]")));
   }
 
-  private int sum(int[] numbers) {
+  private int sum(Positive[] numbers) {
     int result = 0;
 
     for (var number : numbers) {
-      result += number;
+      result += number.getNumber();
     }
 
     return result;
   }
 
-  private int[] toInts(String[] stringNumbers) {
-    int[] numbers = new int[stringNumbers.length];
+  private Positive[] toInts(String[] stringNumbers) {
+    Positive[] numbers = new Positive[stringNumbers.length];
 
     for (int i = 0; i < numbers.length; i++) {
-      numbers[i] = Integer.parseInt(stringNumbers[i]);
+      numbers[i] = new Positive(stringNumbers[i]);
     }
 
     return numbers;

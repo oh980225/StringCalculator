@@ -3,8 +3,8 @@ package com.osj.calculator.domain;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
-
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class StringCalculatorTest {
   @Test
@@ -53,5 +53,12 @@ class StringCalculatorTest {
 
     var actual = calculator.addNumbers("1:2,2");
     assertThat(actual, is(5));
+  }
+
+  @Test
+  void addNumbers_negative() {
+    StringCalculator calculator = new StringCalculator();
+
+    assertThrows(RuntimeException.class, () -> calculator.addNumbers("-1:2,2"));
   }
 }
